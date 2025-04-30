@@ -9,7 +9,7 @@ smtp_pass = "cQFX2xCp1794DWY3"
 msg = EmailMessage()
 msg["Subject"] = "Test Email"
 msg["From"] = smtp_user
-msg["To"] = "pizza.great@protonmail.com"
+msg["To"] = "alexwasbest@gmail.com"
 msg.set_content("This is a test.")
 
 try:
