@@ -6,7 +6,7 @@ from email.mime.multipart import MIMEMultipart
 smtp_server = "smtp.zoho.com"
 smtp_port = 587  # or use 465 for SSL
 smtp_username = "fancyotter99@fancyotter99.run.place"
-smtp_password = "ZfxLRnvpmLcK"  # If using 2FA
+smtp_password = "ZfxLRnvpmLc" #real code has K at the end  # If using 2FA
 
 # Email content
 from_address = "fancyotter99@fancyotter99.run.place"
