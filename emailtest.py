@@ -1,23 +1,36 @@
 import smtplib
-from email.message import EmailMessage
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
-smtp_host = "smtp-relay.brevo.com"
-smtp_port = 587
-smtp_user = "8bbf44001@smtp-brevo.com"
-smtp_pass = "cQFX2xCp1794DWY3"
+# Zoho SMTP Server details
+smtp_server = "smtp.zoho.com"
+smtp_port = 587  # or use 465 for SSL
+smtp_username = "fancyotter99@fancyotter99.run.place"
+smtp_password = "ZfxLRnvpmLcK"  # If using 2FA
 
-msg = EmailMessage()
-msg["Subject"] = "Test Email"
-msg["From"] = smtp_user
-msg["To"] = "alexwasbest@gmail.com"
-msg.set_content("This is a test.")
+# Email content
+from_address = "fancyotter99@fancyotter99.run.place"
+to_address = "pizza.great@protonmail.com"
+subject = "Test Email from Zoho"
+body = "This is a test email sent from Zoho Mail."
 
+# Create the email
+message = MIMEMultipart()
+message["From"] = from_address
+message["To"] = to_address
+message["Subject"] = subject
+message.attach(MIMEText(body, "plain"))
+
+# Send the email
 try:
-    with smtplib.SMTP(smtp_host, smtp_port) as server:
-        server.set_debuglevel(1)  # ← see what's happening
-        server.starttls()
-        server.login(smtp_user, smtp_pass)
-        server.send_message(msg)
-        print("Sent!")
+    server = smtplib.SMTP(smtp_server, smtp_port)
+    server.starttls()  # For TLS encryption
+    server.login(smtp_username, smtp_password)
+    text = message.as_string()
+    server.sendmail(from_address, to_address, text)
+    print("Email sent successfully!")
 except Exception as e:
-    print("FAILED:", e)
+    print(f"Error sending email: {e}")
+finally:
+    server.quit()
+
